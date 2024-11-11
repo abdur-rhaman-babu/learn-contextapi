@@ -3,6 +3,8 @@ import Root from "../components/Root/Root";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
+import Product from "../components/Products/Product";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +22,10 @@ export const router = createBrowserRouter([
             {
                 path:'/login',
                 element:<Login/>
+            },
+            {
+                path:'/products',
+                element:<PrivateRoute><Product/></PrivateRoute>
             }
         ]
     }
