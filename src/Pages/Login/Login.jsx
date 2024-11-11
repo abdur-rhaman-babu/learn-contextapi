@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext)
+  const { signInUser, signInwithGoogle } = useContext(AuthContext)
   const navigate = useNavigate()
     const handleLogin = (e) =>{
         e.preventDefault()
@@ -15,6 +15,17 @@ const Login = () => {
         .then((result)=>{
           console.log(result.user)
           e.target.reset()
+          navigate('/')
+        })
+        .catch(error=>{
+          console.log('ERROR', error.message)
+        })
+    }
+
+    const handleLoginWithGoogle = () =>{
+        signInwithGoogle()
+        .then(res=>{
+          console.log(res.user)
           navigate('/')
         })
         .catch(error=>{
@@ -51,6 +62,9 @@ const Login = () => {
       </div>
       <div className="form-control mt-6">
         <button className="btn btn-primary">Login</button>
+      </div>
+      <div>
+        <button onClick={handleLoginWithGoogle}>Sign in With google</button>
       </div>
       <p>
         Aready have an account?{" "}
